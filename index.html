@@ -1,501 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
-
-<title>Pokowin: Download App</title>
-
-<script async
-src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
-crossorigin="anonymous"></script>
-
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    overscroll-behavior: none;
-}
-
-body {
-    background: #07072b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    touch-action: none;
-}
-
-/* Main */
-
-.container {
-    width: 100%;
-    height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    padding: 15px;
-}
-
-.banner-ad {
-    width: 100%;
-    max-width: 390px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-bottom: 15px;
-}
-
-/* Screenshot Area */
-
-.slider {
-    width: 100%;
-    max-width: 390px;
-
-    overflow: hidden;
-
-    position: relative;
-
-    touch-action: none;
-}
-
-/* Images */
-
-.track {
-    display: flex;
-
-    will-change: transform;
-
-    user-select: none;
-    -webkit-user-select: none;
-
-    touch-action: none;
-}
-
-.track img {
-    width: 100%;
-    min-width: 100%;
-
-    flex-shrink: 0;
-
-    display: block;
-
-    user-select: none;
-    -webkit-user-select: none;
-
-    -webkit-user-drag: none;
-
-    pointer-events: none;
-}
-
-/* Dots */
-
-.dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 7px;
-
-    margin-top: 12px;
-}
-
-.dot {
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #777;
-
-    transition: 0.25s;
-}
-
-.dot.active {
-    width: 20px;
-
-    border-radius: 10px;
-
-    background: #ffffff;
-}
-
-/* Download Button */
-
-.download {
-    display: block;
-
-    margin-top: 22px;
-
-    width: 230px;
-
-    padding: 15px 20px;
-
-    background: #39b54a;
-
-    color: white;
-
-    text-align: center;
-
-    text-decoration: none;
-
-    font-size: 25px;
-
-    font-weight: bold;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 5px 15px rgba(0,0,0,0.3);
-
-    -webkit-tap-highlight-color: transparent;
-}
-
-.download:active {
-    transform: scale(0.97);
-}
-
-
-/* Small phones */
-
-@media (max-height: 650px) {
-
-    .slider {
-        max-width: 300px;
-    }
-
-    .download {
-        margin-top: 15px;
-        padding: 11px;
-        font-size: 21px;
-        width: 200px;
-    }
-
-}
-
-
-/* Bigger phones */
-
-@media (min-height: 800px) {
-
-    .slider {
-        max-width: 400px;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnRewards - Complete Offers & Earn</title>
+    <!-- Tailwind CSS for modern design -->
+    <script src="https://jsdelivr.net"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col">
 
+    <!-- ========== 1. LOGIN SECTION ========== -->
+    <section id="login-section" class="flex-grow flex items-center justify-center px-4">
+        <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
+            <h2 class="text-3xl font-extrabold text-center text-indigo-600 mb-2">EarnRewards</h2>
+            <p class="text-gray-500 text-center mb-6">Login or Signup to start earning</p>
+            <div id="auth-error" class="bg-red-100 text-red-700 p-3 rounded-lg mb-4 text-sm hidden"></div>
+            <form id="auth-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="auth-email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Password</label>
+                    <input type="password" id="auth-password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </div>
+                <button type="submit" id="btn-primary-auth" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition duration-200 shadow-lg">Log In / Sign Up</button>
+            </form>
+            <div class="mt-6 flex justify-center space-x-4 text-xs text-gray-400">
+                <a href="privacy-policy.html" target="_blank" class="hover:underline">Privacy Policy</a>
+                <span>•</span>
+                <a href="terms.html" target="_blank" class="hover:underline">Terms of Service</a>
+            </div>
+        </div>
+    </section>
 
-<body>
+    <!-- ========== NAVIGATION BAR (Hidden Initially) ========== -->
+    <nav id="main-nav" class="bg-indigo-600 text-white shadow-md px-4 py-3 hidden">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <span class="font-black text-xl tracking-wide cursor-pointer" onclick="showSection('dashboard-section')">EarnRewards</span>
+            <div class="flex items-center space-x-6">
+                <!-- Coin Counter Box -->
+                <div class="bg-indigo-800 px-3 py-1.5 rounded-full flex items-center space-x-2 font-bold text-sm shadow-inner">
+                    <span class="text-amber-400 text-base">🪙</span>
+                    <span id="user-coins">0</span> <span class="text-xs text-indigo-200">Coins</span>
+                </div>
+                <button id="btn-logout" class="text-sm font-medium hover:text-indigo-200 transition">Logout</button>
+            </div>
+        </div>
+    </nav>
 
-
-<div class="container">
-
-    <!-- ADSENSE BANNER -->
-
-    <div class="banner-ad">
-
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-             data-ad-slot="XXXXXXXXXX"
-             data-ad-format="auto"
-             data-full-width-responsive="true">
-        </ins>
-
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-    </div>
-
-    <!-- SCREENSHOTS -->
-
-    <div class="slider" id="slider">
-
-        <div class="track" id="track">
-
-            <img src="screenshot1.png"
-                 alt="Screenshot 1">
-
-            <img src="screenshot2.png"
-                 alt="Screenshot 2">
-
-            <img src="screenshot3.png"
-                 alt="Screenshot 3">
-
-            <img src="screenshot4.png"
-                 alt="Screenshot 4">
-
-            <img src="screenshot5.png"
-                 alt="Screenshot 5">
-
+    <!-- ========== 2. DASHBOARD / OFFERWALL SECTION ========== -->
+    <section id="dashboard-section" class="max-w-6xl mx-auto w-full px-4 py-6 flex-grow hidden">
+        <div class="flex justify-between items-center mb-6">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800">Welcome, <span id="user-display-email" class="text-indigo-600">User</span>!</h1>
+                <p class="text-sm text-gray-500">Complete the offers below to accumulate instant coins.</p>
+            </div>
+            <button onclick="showSection('redeem-section')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-5 py-2.5 rounded-xl shadow transition duration-200 flex items-center space-x-1">
+                <span>🎁</span> <span>Redeem Coins</span>
+            </button>
         </div>
 
+        <!-- Real Offerwall Container -->
+        <div class="bg-white rounded-2xl shadow-md p-4 min-h-[600px] border border-gray-100 flex flex-col">
+            <div class="border-b border-gray-200 pb-3 mb-4">
+                <span class="border-b-4 border-indigo-600 pb-3 font-bold text-indigo-600 px-2 text-sm tracking-wider uppercase">Torox Offerwall</span>
+            </div>
+            <!-- Torox Iframe Container -->
+            <div class="flex-grow w-full relative">
+                <iframe id="offerwall-iframe" src="" class="w-full h-[650px] border-0 rounded-xl" allow="geolocation; microphone; camera"></iframe>
+            </div>
+        </div>
+    </section>
 
-        <!-- DOTS -->
-
-        <div class="dots">
-
-            <span class="dot active"></span>
-
-            <span class="dot"></span>
-
-            <span class="dot"></span>
-
-            <span class="dot"></span>
-
-            <span class="dot"></span>
-
+    <!-- ========== 3. REDEEM SECTION ========== -->
+    <section id="redeem-section" class="max-w-4xl mx-auto w-full px-4 py-6 flex-grow hidden">
+        <div class="mb-6 flex items-center space-x-3">
+            <button onclick="showSection('dashboard-section')" class="bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 font-bold p-2.5 rounded-xl shadow-sm transition">⬅️ Back</button>
+            <h1 class="text-2xl font-bold text-gray-800">Redeem Your Earnings</h1>
         </div>
 
-    </div>
-
-
-    <!-- DOWNLOAD -->
-
-    <a
-        href="pokowin.apk"
-        download
-        class="download">
-
-        Download
-
-    </a>
-
-
-</div>
-
-
-
-<script>
-
-const slider =
-    document.getElementById("slider");
-
-const track =
-    document.getElementById("track");
-
-const dots =
-    document.querySelectorAll(".dot");
-
-
-let index = 0;
-
-let startX = 0;
-
-let currentX = 0;
-
-let dragging = false;
-
-
-/* =========================
-   SHOW IMAGE
-========================= */
-
-function showImage(i) {
-
-    index = i;
-
-    track.style.transition =
-        "transform 0.35s ease-out";
-
-    track.style.transform =
-        "translateX(-" + (index * 100) + "%)";
-
-
-    dots.forEach((dot, n) => {
-
-        dot.classList.toggle(
-            "active",
-            n === index
-        );
-
-    });
-
-}
-
-
-/* =========================
-   TOUCH START
-========================= */
-
-slider.addEventListener(
-    "touchstart",
-    function(e) {
-
-        startX =
-            e.touches[0].clientX;
-
-        currentX = startX;
-
-        dragging = true;
-
-        track.style.transition =
-            "none";
-
-    },
-    { passive: false }
-);
-
-
-/* =========================
-   TOUCH MOVE
-========================= */
-
-slider.addEventListener(
-    "touchmove",
-    function(e) {
-
-        if (!dragging) return;
-
-        e.preventDefault();
-
-        currentX =
-            e.touches[0].clientX;
-
-        let move =
-            currentX - startX;
-
-
-        /*
-          Current image को
-          finger के साथ move करें
-        */
-
-        let position =
-            (-index * slider.offsetWidth)
-            + move;
-
-
-        /*
-          First और last image
-          पर resistance
-        */
-
-        if (
-            index === 0 &&
-            move > 0
-        ) {
-
-            position =
-                move * 0.25;
-
-        }
-
-
-        if (
-            index === dots.length - 1 &&
-            move < 0
-        ) {
-
-            position =
-                (-index * slider.offsetWidth)
-                + move * 0.25;
-
-        }
-
-
-        track.style.transform =
-            "translateX(" +
-            position +
-            "px)";
-
-    },
-    { passive: false }
-);
-
-
-/* =========================
-   TOUCH END
-========================= */
-
-slider.addEventListener(
-    "touchend",
-    function() {
-
-        if (!dragging) return;
-
-        dragging = false;
-
-
-        let distance =
-            currentX - startX;
-
-
-        /*
-          RIGHT → LEFT
-        */
-
-        if (
-            distance < -50 &&
-            index < dots.length - 1
-        ) {
-
-            index++;
-
-        }
-
-
-        /*
-          LEFT → RIGHT
-        */
-
-        else if (
-            distance > 50 &&
-            index > 0
-        ) {
-
-            index--;
-
-        }
-
-
-        /*
-          वापस सही position
-        */
-
-        showImage(index);
-
-    }
-);
-
-
-/* =========================
-   PREVENT LONG PRESS
-========================= */
-
-slider.addEventListener(
-    "contextmenu",
-    function(e) {
-
-        e.preventDefault();
-
-    }
-);
-
-</script>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Paytm Reward Card -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-2xl mb-4">📱</div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-1">Paytm Cash Transfer</h3>
+                    <p class="text-sm text-gray-500 mb-4">Direct transfer to your verified Paytm Wallet. Processing takes up to 24 hours.</p>
+                </div>
+                <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <span class="text-sm font-semibold text-gray-600">Min. 1000 Coins (= ₹10)</span>
+                    <button onclick="alert('Withdrawal Request Submitted!')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl text-sm transition">Withdraw</button>
+                </div>
+            </div>
+
+            <!-- UPI Reward Card -->
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-2xl mb-4">💳</div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-1">Instant UPI Transfer</h3>
+                    <p class="text-sm text-gray-500 mb-4">Withdraw directly to your UPI ID (GPay, PhonePe, Paytm UPI) instantly.</p>
+                </div>
+                <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <span class="text-sm font-semibold text-gray-600">Min. 5000 Coins (= ₹50)</span>
+                    <button onclick="alert('Withdrawal Request Submitted!')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl text-sm transition">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer for Policy Compliance -->
+    <footer class="bg-white border-t border-gray-200 py-4 mt-auto text-center text-xs text-gray-500">
+        &copy; 2026 EarnRewards. All rights reserved. | <a href="privacy-policy.html" target="_blank" class="underline hover:text-gray-700">Privacy Policy</a> | <a href="terms.html" target="_blank" class="underline hover:text-gray-700">Terms</a>
+    </footer>
+
+    <!-- Firebase SDK (Modular v10) -->
+    <script type="module" src="app.js"></script>
 </body>
 </html>
